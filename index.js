@@ -6,20 +6,13 @@ const cors = require('cors')
 const swaggerUi = require('swagger-ui-express');
 const swaggerOptions = { customCssUrl: '/swagger-ui.css' };
 const routes = require('./src/routes');
-const fs = require("fs");
-const https = require("https");
 const app = express();
 
-
-const corsOptions = {
-    origin: 'http://localhost:4000/' , // Substitua pelo seu domínio frontend
-    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE', // Métodos HTTP permitidos
-    credentials: true, // Habilitar o uso de credenciais (cookies, cabeçalhos de autorização, etc.)
-  };
+const authDocProducao = require('./src/middlewares/authDoc.js');
 
 require("dotenv").config();
 
-app.use(cors(corsOptions))
+app.use(cors())
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -29,14 +22,14 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 
-routes(app);
 
 if (process.env.NODE_ENV !== 'teste') {
     const swaggerFile = require('./swagger/swagger_output.json');
     app.get('/', (req, res) => {/*#swagger.ignore = true*/ res.redirect('/doc'); })
-    app.use('/doc', swaggerUi.serve, swaggerUi.setup(swaggerFile, swaggerOptions));
+    app.use('/doc', authDocProducao, swaggerUi.serve, swaggerUi.setup(swaggerFile, swaggerOptions));
 }
 
+routes(app);
 
 
 

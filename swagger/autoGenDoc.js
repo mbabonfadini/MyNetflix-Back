@@ -1,5 +1,9 @@
 const mongooseToSwagger = require('mongoose-to-swagger');
 const UserSchema = require('../src/models/User.js');
+const SeriesSchema = require('../src/models/Series.js');
+const EpisodesSchema = require('../src/models/Episodes.js');
+const TypesOfVideoSchema = require('../src/models/TypesOfVideo.js');
+const TypeOfSubjectSchema = require('../src/models/TypeOfSubject.js');
 const swaggerAutogen = require('swagger-autogen')({
     openapi: '3.0.0',
     languague: 'pt-BR'
@@ -32,6 +36,10 @@ let doc = {
     components: {
         schemas: {
             User: mongooseToSwagger(UserSchema),
+            Series: mongooseToSwagger(SeriesSchema),
+            Episodes: mongooseToSwagger(EpisodesSchema),
+            TypesOfVideo: mongooseToSwagger(TypesOfVideoSchema),
+            TypesOfSubjects: mongooseToSwagger(TypeOfSubjectSchema),
         }
     }
 }

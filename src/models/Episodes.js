@@ -39,5 +39,5 @@ const schema = mongoose.Schema(
     }
 )
 
-const episodesSchemas = mongoose.models.Episodes || mongoose.model('Episodes', schema);
-module.exports = episodesSchemas
+const episodeSchemas = mongoose.models.Episodes || mongoose.model('Episodes', schema);
+module.exports = episodeSchemas
