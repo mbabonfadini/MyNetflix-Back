@@ -13,7 +13,7 @@ const app = express();
 const whitelist = ['https://my-netflix-back.vercel.app/', 'https://localhost:4000/']
 
 const corsOptions = {
-    origin: 'https://localhost:4000', // Substitua pelo seu domínio frontend
+    origin: 'https://localhost:4000/' , // Substitua pelo seu domínio frontend
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE', // Métodos HTTP permitidos
     credentials: true, // Habilitar o uso de credenciais (cookies, cabeçalhos de autorização, etc.)
   };
@@ -45,12 +45,7 @@ routes(app);
 
 if (process.env.NODE_ENV !== 'teste') {
     const PORT = process.env.PORT || 4000;
-    https.createServer({
-        key: process.env.SERVER_KEY,
-        cert: process.env.SERVER_CRT,
-    },
-        app
-    ).listen(PORT, () => console.log(`Servidor rodando na porta https://localhost:${PORT}`));
+    app.listen(PORT, () => console.log(`Servidor rodando na porta http://localhost:${PORT}`));
 }
 
 

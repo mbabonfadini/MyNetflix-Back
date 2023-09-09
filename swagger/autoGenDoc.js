@@ -17,12 +17,12 @@ let doc = {
     },
     servers: [
         {
-            url: "https://localhost:4000/",
+            url: "http://localhost:4000/",
             description: "Servidor localhost"
 
         },
         {
-            url: "https://my-netflix-back.vercel.app/",
+            url: "http://my-netflix-back.vercel.app/",
             description: "Servidor de produção"
 
         }
