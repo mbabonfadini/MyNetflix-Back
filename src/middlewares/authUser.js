@@ -9,12 +9,11 @@ async function authUser(req, res, next) {
     }
     try {
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
-        
+
         req.userJwt = decoded;
         next();
 
     } catch (error) {
-        console.error(error);
         return treatError(res, new Error("Token de autenticação inválido"));
     }
 }

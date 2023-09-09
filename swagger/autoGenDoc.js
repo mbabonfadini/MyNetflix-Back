@@ -6,7 +6,7 @@ const swaggerAutogen = require('swagger-autogen')({
 })
 
 const outputFile = './swagger/swagger_output.json';
-const endpointsFiles = ["./server.js",'./src/routes.js']; 
+const endpointsFiles = ["./index.js",'./src/routes.js']; 
 
 
 let doc = {
@@ -21,11 +21,11 @@ let doc = {
             description: "Servidor localhost"
 
         },
-        // {
-        //     url: "https://boardtasks-back.vercel.app/",
-        //     description: "Servidor de produção"
+        {
+            url: "https://my-netflix-back.vercel.app/",
+            description: "Servidor de produção"
 
-        // }
+        }
     ],
     consumes: ['application/json'],
     produces: ['application/json'],
@@ -40,6 +40,6 @@ let doc = {
 swaggerAutogen(outputFile, endpointsFiles, doc).then(() => {
     console.log("Documentação do Swagger gerada encontra-se no arquivo em: " + outputFile);
     if (process.env.NODE_ENV !== 'production') {
-        require('../server.js')
+        require('../index.js')
     }
 })
