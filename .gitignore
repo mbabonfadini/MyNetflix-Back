@@ -2,3 +2,5 @@
 node_modules
 swagger/swagger_output.json
 .env
+server.crt
+server.key

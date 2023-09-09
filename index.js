@@ -38,8 +38,8 @@ routes(app);
 if (process.env.NODE_ENV !== 'teste') {
     const PORT = process.env.PORT || 4000;
     https.createServer({
-        key: fs.readFileSync('server.key'),
-        cert: fs.readFileSync('server.crt')
+        key: process.env.SERVER_KEY,
+        cert: process.env.SERVER_CRT
     },
         app
     ).listen(PORT, () => console.log(`Servidor rodando na porta https://localhost:${PORT}`));
