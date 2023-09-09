@@ -10,12 +10,12 @@ router
     .post("/create", dbConnection, async function (req, res) {
         try {
             // #swagger.tags = ['User']
-            const { name, lastname, mail, password, dateOfBirth, imgUrl, permission } = req.body;
+            const { name, lastname, mail, password, dateOfBirth, imgUrl } = req.body;
 
             const attempts = 10;
             const passwordHash = await bcrypt.hash(password, attempts);
 
-            const dbResponse = await UserSchema.create({ name, lastname, mail, password: passwordHash, dateOfBirth, imgUrl, permission })
+            const dbResponse = await UserSchema.create({ name, lastname, mail, password: passwordHash, dateOfBirth, imgUrl})
 
             res.status(200).json({
                 status: "OK",
