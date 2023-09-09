@@ -22,7 +22,7 @@ let doc = {
 
         },
         {
-            url: "http://my-netflix-back.vercel.app/",
+            url: "https://my-netflix-back.vercel.app/",
             description: "Servidor de produção"
 
         }

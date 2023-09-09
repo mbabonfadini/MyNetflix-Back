@@ -10,10 +10,9 @@ const fs = require("fs");
 const https = require("https");
 const app = express();
 
-const whitelist = ['https://my-netflix-back.vercel.app/', 'https://localhost:4000/']
 
 const corsOptions = {
-    origin: 'https://localhost:4000/' , // Substitua pelo seu domínio frontend
+    origin: 'http://localhost:4000/' , // Substitua pelo seu domínio frontend
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE', // Métodos HTTP permitidos
     credentials: true, // Habilitar o uso de credenciais (cookies, cabeçalhos de autorização, etc.)
   };
@@ -30,6 +29,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 
+routes(app);
 
 if (process.env.NODE_ENV !== 'teste') {
     const swaggerFile = require('./swagger/swagger_output.json');
@@ -37,9 +37,6 @@ if (process.env.NODE_ENV !== 'teste') {
     app.use('/doc', swaggerUi.serve, swaggerUi.setup(swaggerFile, swaggerOptions));
 }
 
-
-
-routes(app);
 
 
 
