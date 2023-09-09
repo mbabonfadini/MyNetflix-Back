@@ -4,6 +4,7 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const dbConnection = require('../middlewares/dbConnetion.js');
 const treatError = require("../functions/treatError.js");
+const authUser = require('../middlewares/authUser.js');
 const router = express.Router();
 
 router
@@ -15,7 +16,7 @@ router
             const attempts = 10;
             const passwordHash = await bcrypt.hash(password, attempts);
 
-            const dbResponse = await UserSchema.create({ name, lastname, mail, password: passwordHash, dateOfBirth, imgUrl})
+            const dbResponse = await UserSchema.create({ name, lastname, mail, password: passwordHash, dateOfBirth, imgUrl })
 
             res.status(200).json({
                 status: "OK",
@@ -61,7 +62,7 @@ router
         }
     })
 
-    .put("/update/:id", dbConnection, async function (req, res) {
+    .put("/update/:id", authUser, dbConnection, async function (req, res) {
         try {
             //#swagger.tags = ['User']
             // #swagger.description = 'Chose one or several below. The API will update any or all off them'
